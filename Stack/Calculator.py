@@ -28,8 +28,10 @@ class Calculator:
         return self.postfix
     
     def Calc(self,nums):
+        self.postfix = ''
+        self.stack = []
         self.postfix = self.InfixToPostfix(nums)
-        self.stack=[]
+        self.stack = []
         for i in self.postfix:
             if i not in self.operators:
                 self.stack.append(i)
@@ -40,14 +42,14 @@ class Calculator:
                     num1 = self.stack.pop()
                     num2 = self.stack.pop()
                     if i == '+':
-                        self.stack.append(str(int(num1)+int(num2)))
+                        self.stack.append(str(int(num2)+int(num1)))
                     elif i == '-':
-                        self.stack.append(str(int(num1)-int(num2)))
+                        self.stack.append(str(int(num2)-int(num1)))
                     elif i == '*':
-                        self.stack.append(str(int(num1)*int(num2)))
+                        self.stack.append(str(int(num2)*int(num1)))
                     elif i == '/':
-                        self.stack.append(str(int(num1)//int(num2)))
-        return int(''.join(self.stack))
+                        self.stack.append(str(int(num2)//int(num1)))
+        return self.stack[0]
 
 
 calc=Calculator()
