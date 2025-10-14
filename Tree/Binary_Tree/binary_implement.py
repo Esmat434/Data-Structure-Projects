@@ -59,11 +59,38 @@ class Binary_Tree:
             if status:
                 return True
         return False
-        
 
-tree = Binary_Tree(56)
-tree.add_child(12)
-tree.add_child(14)
-tree.add_child(15)
-tree.add_child(23)
-tree.add_child(56)
+    def inorder_traversal(self):
+        lst = []
+        if self.left:
+            lst+=self.left.inorder_traversal()        
+        lst.append(self.data)
+        if self.right:
+            lst+=self.right.inorder_traversal()
+        return lst
+
+    def preorder_traversal(self):
+        lst = []
+        lst.append(self.data)
+        if self.left:
+            lst+=self.left.preorder_traversal()
+        if self.right:
+            lst+=self.right.preorder_traversal()
+        return lst
+
+    def postorder_traversal(self):
+        lst = []
+        if self.left:
+            lst+=self.left.postorder_traversal()
+        if self.right:
+            lst+=self.right.postorder_traversal()
+        lst.append(self.data)
+        return lst
+
+    def count_nodes(self):
+        count=1
+        if self.left:
+            count += self.left.count_nodes()
+        if self.right:
+            count += self.right.count_nodes()
+        return count
